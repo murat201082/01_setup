@@ -1,7 +1,4 @@
-import React from 'react';
-import { useState } from "react"
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -14,45 +11,21 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const FormComponent = () => {
-  const [open, setOpen] = useState(false);
+export default function AlertDialogSlide() {
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-  
 
   const handleClose = () => {
     setOpen(false);
   };
 
-
-    const initialCompany = 'Godoro';
-
-    const companyChanced = (e) => {
-        e.preventDefault();
-        // alert("Değişti" + e.target.value)
-        setCompany(e.target.value);
-    }
-
-    const [company, setCompany] = useState(initialCompany);
-
-    return (
-        <>
-        
-         <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      Nesne :<TextField id="outlined-basic" label={company} variant="outlined"  onChange={companyChanced}/>
-      Öz<TextField id="filled-basic" label={company} variant="filled" />
-      <TextField id="standard-basic" label="Godoro" variant="standard" />
-        <Button variant="outlined" onClick={handleClickOpen}>
-       Sakla
+  return (
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+       Ön İzleme İçin Bakınız
       </Button>
       <Dialog
         open={open}
@@ -73,14 +46,6 @@ export const FormComponent = () => {
           <Button onClick={handleClose}>Katılıyorum</Button>
         </DialogActions>
       </Dialog>
-      
-    </Box>
-        
-       
-            
-        
-        </>
-    )
+    </div>
+  );
 }
-
-
