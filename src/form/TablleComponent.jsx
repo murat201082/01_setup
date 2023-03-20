@@ -1,4 +1,3 @@
-
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,129 +7,193 @@ import TableRow from "@mui/material/TableRow";
 
 import { useState } from "react";
 
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
+import Switch from "@mui/material/Switch";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
 
+import CssBaseline from "@mui/material/CssBaseline";
 
+import Paper from "@mui/material/Paper";
+import Fab from "@mui/material/Fab";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
 
+import AddIcon from "@mui/icons-material/Add";
+import SearchIcon from "@mui/icons-material/Search";
+import MoreIcon from "@mui/icons-material/MoreVert";
 
-const initialProducts=[
-    { urunNo: 301, UrunAdı: "Cep Telefonu", salary: 5400 },
-    { urunNo: 302, UrunAdı: "Dizüstü Bilgisayar", salary: 4650.0 },
-    { urunNo: 303, UrunAdı: "Masaüstü Bilgisayar", salary: 3545.0 },
-    { urunNo: 304, UrunAdı: "Cep Telefonu", salary: 5000.0 },
-    { urunNo: 305, UrunAdı: "Mac", salary: 6000.0 },
-    { urunNo: 306, UrunAdı: "Cep Telefonu", salary: 7000.0 },
-    { urunNo: 307, UrunAdı: "Dizüstü Bilgisayar", salary: 8000.0 },
-    { urunNo: 308, UrunAdı: "Cep Telefonu", salary: 9000.0 },
-    { urunNo: 309, UrunAdı: "Mac", salary: 10000.0 },
-    { urunNo: 3010, UrunAdı: "Cep Telefonu", salary: 11000.0 },
-    { urunNo: 3011, UrunAdı: "Dizüstü Bilgisayar", salary: 12000.0 },
-    { urunNo: 3012, UrunAdı: "Mac", salary: 13000.0 },
-    { urunNo: 3013, UrunAdı: "Cep Telefonu", salary: 14000.0 },
-    { urunNo: 3014, UrunAdı: "Mac", salary: 15000.0 },
-  ];
+const initialProducts = [
+  { urunNo: 301, UrunAdı: "Cep Telefonu", salary: 5400 },
+  { urunNo: 302, UrunAdı: "Dizüstü Bilgisayar", salary: 4650.0 },
+  { urunNo: 303, UrunAdı: "Masaüstü Bilgisayar", salary: 3545.0 },
+  { urunNo: 304, UrunAdı: "Cep Telefonu", salary: 5000.0 },
+  { urunNo: 305, UrunAdı: "Mac", salary: 6000.0 },
+  { urunNo: 306, UrunAdı: "Cep Telefonu", salary: 7000.0 },
+  { urunNo: 307, UrunAdı: "Dizüstü Bilgisayar", salary: 8000.0 },
+  { urunNo: 308, UrunAdı: "Cep Telefonu", salary: 9000.0 },
+  { urunNo: 309, UrunAdı: "Mac", salary: 10000.0 },
+  { urunNo: 3010, UrunAdı: "Cep Telefonu", salary: 11000.0 },
+  { urunNo: 3011, UrunAdı: "Dizüstü Bilgisayar", salary: 12000.0 },
+  { urunNo: 3012, UrunAdı: "Mac", salary: 13000.0 },
+  { urunNo: 3013, UrunAdı: "Cep Telefonu", salary: 14000.0 },
+  { urunNo: 3014, UrunAdı: "Mac", salary: 15000.0 },
+];
 
+const messages = [
+  {
+    id: 1,
+    primary: "Brunch this week?",
+    secondary:
+      "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+    person: "/static/images/avatar/5.jpg",
+  },
+  {
+    id: 2,
+    primary: "Birthday Gift",
+    secondary: `Do you have a suggestion for a good present for John on his work
+        anniversary. I am really confused & would love your thoughts on it.`,
+    person: "/static/images/avatar/1.jpg",
+  },
+  {
+    id: 3,
+    primary: "Recipe to try",
+    secondary:
+      "I am try out this new BBQ recipe, I think this might be amazing",
+    person: "/static/images/avatar/2.jpg",
+  },
+  {
+    id: 4,
+    primary: "Yes!",
+    secondary: "I have the tickets to the ReactConf for this year.",
+    person: "/static/images/avatar/3.jpg",
+  },
+  {
+    id: 5,
+    primary: "Doctor's Appointment",
+    secondary:
+      "My appointment for the doctor was rescheduled for next Saturday.",
+    person: "/static/images/avatar/4.jpg",
+  },
+  {
+    id: 6,
+    primary: "Discussion",
+    secondary: `Menus that are generated by the bottom app bar (such as a bottom
+        navigation drawer or overflow menu) open as bottom sheets at a higher elevation
+        than the bar.`,
+    person: "/static/images/avatar/5.jpg",
+  },
+  {
+    id: 7,
+    primary: "Summer BBQ",
+    secondary: `Who wants to have a cookout this weekend? I just got some furniture
+        for my backyard and would love to fire up the grill.`,
+    person: "/static/images/avatar/1.jpg",
+  },
+];
 
-  
-  
+const StyledFab = styled(Fab)({
+  position: "absolute",
+  zIndex: 1,
+  top: -30,
+  left: 0,
+  right: 0,
+  margin: "0 auto",
+});
+
 export default function TablleComponent() {
-    const [p, setP] = useState(initialProducts);
-    const [auth, setAuth] = React.useState(true);
+  const [p, setP] = useState(initialProducts);
+  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
 
- 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   return (
-
-
-      
-    <TableContainer  >
-        <Box sx={{ flexGrow: 1 }}>
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Photos
-          </Typography>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/kozalak-manti-asama-10.webp" />
-              </IconButton>
-            </Tooltip>
-            
-          </Box>
-          {auth && (
-            <div>
-             
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-          )}
-        </Toolbar>
-      </AppBar>
-    </Box>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+    <TableContainer>
+      <Box sx={{ flexGrow: 1 }}>
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={auth}
+                onChange={handleChange}
+                aria-label="login switch"
+              />
+            }
+            label={auth ? "Logout" : "Login"}
+          />
+        </FormGroup>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Photos
+            </Typography>
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/kozalak-manti-asama-10.webp" />
+                </IconButton>
+              </Tooltip>
+            </Box>
+            {auth && (
+              <div>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                </Menu>
+              </div>
+            )}
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead className="bg-info">
           <TableRow>
-            <TableCell >Ürün No</TableCell>
+            <TableCell>Ürün No</TableCell>
             <TableCell align="right">Ürün Adı</TableCell>
             <TableCell align="right">Fiyatı&nbsp;(g)</TableCell>
           </TableRow>
@@ -150,6 +213,64 @@ export default function TablleComponent() {
           ))}
         </TableBody>
       </Table>
+      <React.Fragment>
+        <CssBaseline />
+        <Paper square sx={{ pb: "50px" }}>
+          <Typography
+            variant="h5"
+            gutterBottom
+            component="div"
+            sx={{ p: 2, pb: 0 }}
+          >
+            Inbox
+          </Typography>
+          <List sx={{ mb: 2 }}>
+            {messages.map(({ id, primary, secondary, person }) => (
+              <React.Fragment key={id}>
+                {id === 1 && (
+                  <ListSubheader sx={{ bgcolor: "background.paper" }}>
+                    Today
+                  </ListSubheader>
+                )}
+
+                {id === 3 && (
+                  <ListSubheader sx={{ bgcolor: "background.paper" }}>
+                    Yesterday
+                  </ListSubheader>
+                )}
+
+                <ListItem button>
+                  <ListItemAvatar>
+                    <Avatar alt="Profile Picture" src={person} />
+                  </ListItemAvatar>
+                  <ListItemText primary={primary} secondary={secondary} />
+                </ListItem>
+              </React.Fragment>
+            ))}
+          </List>
+        </Paper>
+        <AppBar
+          position="fixed"
+          color="primary"
+          sx={{ top: "auto", bottom: 0 }}
+        >
+          <Toolbar>
+            <IconButton color="inherit" aria-label="open drawer">
+              <MenuIcon />
+            </IconButton>
+            <StyledFab color="secondary" aria-label="add">
+              <AddIcon />
+            </StyledFab>
+            <Box sx={{ flexGrow: 1 }} />
+            <IconButton color="inherit">
+              <SearchIcon />
+            </IconButton>
+            <IconButton color="inherit">
+              <MoreIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </React.Fragment>
     </TableContainer>
   );
 }
